@@ -79,15 +79,15 @@ It is currently difficult to associate a complete privacy policy text with a ser
 
 This file format proposes two fields for the privacy policy. One or both can be used, depending on the policy format. 
 
-`Entity:NAME,COUNTRY_CODE`
+`Entity: NAME,COUNTRY_CODE`
 
 The entity issuing the privacy policy. The country code should follow 2-letter ISO 3166-1.
 
-`Privacy-policy-text:URL`
+`Privacy-policy-text: URL`
 
 A complete privacy policy in a single UTF8 text file that can be downloaded by any user agent or machine tool. This must include all addendums in the text file. It must not include links. Information about contact and consumer actions are covered in this file format and do not need to be linked to in the policy text.
 
-`Privacy-policy:URL`
+`Privacy-policy: URL`
 
 If Privacy-policy-text is present, this can simply point to the existing privacy policy, in whatever form it currently exists. Otherwise, it must point to a machine parsable/scrapable static HTML file that contains the complete policy on a single page.
 
@@ -98,27 +98,27 @@ This file format proposed fields to structure the consumer actions described in 
 
 Below a one-click URL refers to a URL that can process a request without requiring a customer password or login. The URL should take customer identification such as email and verify as necessary to complete the request.
 
-`Contact:mailto:EMAIL`
+`Contact: mailto:EMAIL`
 
 An email contact for the privacy office must be given. This email must be able to handle consumer requests via email where there is not an applicable `Action-*` field for the request. Responses can ask for additional verification but should not require customer password or login. If `Action-*` fields are defined for all applicable consumer requests, this email does not need to handle any requests. This proposal imagines companies would build self-service one-click URLs for all consumer actions as the most scalable outcome.
 
-`Action-delete-account-and-data:mailto:EMAIL|URL`
+`Action-delete-account-and-data: mailto:EMAIL|URL`
 
 Email or one-click URL to process an account and data deletion request.
 
-`Action-delete-personal-data:mailto:EMAIL|URL`
+`Action-delete-personal-data: mailto:EMAIL|URL`
 
 Email or one-click URL to process a personal data deletion request.
 
-`Action-opt-out-sharing:mailto:EMAIL|URL`
+`Action-opt-out-sharing:mailto: EMAIL|URL`
 
 Email or one-click URL to opt out of personal data sharing with third parties.
 
-`Action-shared-list:mailto:EMAIL|URL`
+`Action-shared-list:mailto: EMAIL|URL`
 
 Email or one-click URL to get a list of all third parties where personal data has been shared.
 
-`Action-opt-out-marketing:mailto:EMAIL|URL`
+`Action-opt-out-marketing: mailto:EMAIL|URL`
 
 Email or one-click URL to opt out of marketing.
 
@@ -127,11 +127,11 @@ Email or one-click URL to opt out of marketing.
 
 Common privacy laws call for transparency in cookie storage. In order to audit and enforce transparency, this file format proposes fields that describe the cookies used by a web site, following a previously published format[^5]. A web browser could technically enforce this declaration by refusing access to undeclared cookies.
 
-`Banner:CONSENT_PRESENT,CONSENT_PLATFORM`
+`Banner: CONSENT_PRESENT,CONSENT_PLATFORM`
 
 A boolean attribute whether a consent banner is present, and the consent management platform name, which can be set to `non-specific-custom` or any identifying name if it is a custom banner, or set to `none detected` when there is not banner.
 
-`Cookie:FIELD#1,FIELD#2,...FIELD#7`
+`Cookie: FIELD#1,FIELD#2,...FIELD#7`
 
 The field values are given as a complete septuple with each field defined by the following table, taken from[^5].
 
