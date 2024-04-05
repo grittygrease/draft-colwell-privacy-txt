@@ -3,7 +3,7 @@ title: "A File Format to Aid in Consumer Privacy Enforcement, Research, and Tool
 abbrev: "Privacy.txt File Format"
 category: info
 
-docname: draft-colwell-privacy-txt
+docname: draft-colwell-privacy-txt-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
 number:
 date:
