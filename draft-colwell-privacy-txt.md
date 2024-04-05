@@ -75,9 +75,9 @@ The file format is UTF8 text and lists `Field:Value`, one per line. Whitespace a
 
 ## 1. A machine parsable and complete privacy policy
 
-It is currently difficult to associate a complete privacy policy text with a service for a number of reasons. First, even though it must be linked from the company webpage, there is not a canonical URL. Second, it is common for services to use client-side rendering, interactive elements, break out links for addendums, and server rules to prevent machine parsing/scraping. 
+It is currently difficult to associate a complete privacy policy text with a service for a number of reasons. First, even though it must be linked from the company webpage, there is not a canonical URL. Second, it is common for services to use client-side rendering, interactive elements, break out links for addendums, and server rules to prevent machine parsing/scraping.
 
-This file format proposes two fields for the privacy policy. One or both can be used, depending on the policy format. 
+This file format proposes two fields for the privacy policy. One or both can be used, depending on the policy format.
 
 `Entity: NAME,COUNTRY_CODE`
 
