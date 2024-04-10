@@ -133,7 +133,7 @@ A boolean attribute whether a consent banner is present, and the consent managem
 
 `Cookie: FIELD#1,FIELD#2,...FIELD#7`
 
-The field values are given as a complete septuple with each field defined by the following table, taken from[^5]. From these fields, the most important cookie attributes related to privacy and compliance can be derived. 
+The field values are given as a complete septuple with each field defined by the following table, taken from[^5]. From these fields, the most important cookie attributes related to privacy and compliance can be derived.
 
 | Field | Name                        | Description |
 |-------|-----------------------------|-------------|
