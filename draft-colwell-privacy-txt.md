@@ -133,17 +133,17 @@ A boolean attribute whether a consent banner is present, and the consent managem
 
 `Cookie: FIELD#1,FIELD#2,...FIELD#7`
 
-The field values are given as a complete septuple with each field defined by the following table, taken from[^5].
+The field values are given as a complete septuple with each field defined by the following table, taken from[^5]. From these fields, the most important cookie attributes related to privacy and compliance can be derived. 
 
-| Field | Name | Description |
-|-------|------|-------------|
-| FIELD#1 | Cookie name | The name of the cookie. This identifies which cookie is set. The website uses this together with the value to identify the cookie. |
-| FIELD#2 | Domain name of the cookie | The domain attribute of a cookie specifies which domain may receive the cookie. If this is the same as the host domain, that means it is a first party cookie. |
-| FIELD#3 | Duration of the cookie | The duration attribute contains the storage limit of the cookie. This is in the form of the amount of seconds the cookies will remain on the user’s device before it is expired and deleted. |
+| Field | Name                        | Description |
+|-------|-----------------------------|-------------|
+| FIELD#1 | Cookie name                 | The name of the cookie. This identifies which cookie is set. The website uses this together with the value to identify the cookie. |
+| FIELD#2 | Domain name of the cookie   | The domain attribute of a cookie specifies which domain may receive the cookie. If this is the same as the host domain, that means it is a first party cookie. |
+| FIELD#3 | Duration of the cookie      | The duration attribute contains the storage limit of the cookie. This is in the form of the amount of seconds the cookies will remain on the user’s device before it is expired and deleted. |
 | FIELD#4 | First or Third party cookie | This is a boolean attribute that indicates whether the cookie is a third party cookie. Thus means that the target do- main is different from the host domain. It is placed on the website by someone other than the owner and collects data for that third party. |
-| FIELD#5 | Optional cookie | This is a boolean attribute which indicates whether this is an options cookie or not. Optional cookies can be refused by the user, using the consent banner. When cookies are not optional they will always be placed on the user’s device when they access the website, with or without consent. |
-| FIELD#6 | Http only | This is a boolean attribute which indicates whether the httpOnly flag is set. This means that the cookie can only be transferred via HTTP, and therefor the cookie can only be accessed by the cur- rent server. This helps mitigate client- side scripts accessing the cookie data. |
-| FIELD#7 | Secure status | This is a boolean attribute which indicates whether the secure flag is set on the cookie. The secure flag causes the browser to only send the cookie over encrypted channels, therefor securing the communication between the user’s de- vice and the server. |
+| FIELD#5 | Optional cookie             | This is a boolean attribute which indicates whether this is an options cookie or not. Optional cookies can be refused by the user, using the consent banner. When cookies are not optional they will always be placed on the user’s device when they access the website, with or without consent. |
+| FIELD#6 | Httponly                    | This is a boolean attribute which indicates whether the httpOnly flag is set. This means that the cookie can only be transferred via HTTP, and therefor the cookie can only be accessed by the cur- rent server. This helps mitigate client- side scripts accessing the cookie data. |
+| FIELD#7 | Secure status               | This is a boolean attribute which indicates whether the secure flag is set on the cookie. The secure flag causes the browser to only send the cookie over encrypted channels, therefor securing the communication between the user’s de- vice and the server. |
 
 
 # Conventions and Definitions
