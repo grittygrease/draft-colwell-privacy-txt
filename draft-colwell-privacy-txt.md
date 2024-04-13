@@ -81,7 +81,7 @@ This file format proposes two fields for the privacy policy. One or both can be 
 
 `Entity: NAME,COUNTRY_CODE`
 
-The entity issuing the privacy policy. The country code should follow 2-letter ISO 3166-1.
+The entity issuing the privacy policy. A name that contains a comma should escape the comma as `\,`. The country code should follow 2-letter ISO 3166-1.
 
 `Privacy-policy-text: URL`
 
