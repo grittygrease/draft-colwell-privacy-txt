@@ -79,9 +79,12 @@ It is currently difficult to associate a complete privacy policy text with a ser
 
 This file format proposes two fields for the privacy policy. One or both can be used, depending on the policy format.
 
-`Entity: NAME,COUNTRY_CODE`
+`Entity: NAME`
+`Entity-country: COUNTRY_CODE`
 
-The entity issuing the privacy policy. A name that contains a comma should escape the comma as `\,`. The country code should follow 2-letter ISO 3166-1.
+The legal name of the entity issuing the privacy policy. The country code should follow 2-letter ISO 3166-1.
+
+The current and historical mapping of hostname to entity can be used as a canonical key to associate privacy reputation or enforcement actions similar to a certificate authority. This proposal does not outline what a privacy authority would look like.
 
 `Privacy-policy-text: URL`
 
@@ -97,6 +100,10 @@ If Privacy-policy-text is present, this can simply point to the existing privacy
 This file format proposed fields to structure the consumer actions described in the privacy policy and commonly required by law. Currently it is difficult to get even an email that can service privacy requests from many top-100 site privacy policies. There is currently no law about how easy it should be to take privacy actions, similar to the US CAN-SPAM Act[^4], which led to an industry standard one-click link for marketing emails. The spirit of these fields is similar, to make it as easy as possible for a consumer to exercise their privacy rights.
 
 Below a one-click URL refers to a URL that can process a request without requiring a customer password or login. The URL should take customer identification such as email and verify as necessary to complete the request.
+
+It is allowed to have multiple conforming Action-* values for the same action.
+
+An API standard to make privacy actions more toolable is not covered in this proposal. This proposal could be extended in the future to allow some well-defined API actions given there is at least one other non-assisted option available.
 
 `Contact: mailto:EMAIL`
 
