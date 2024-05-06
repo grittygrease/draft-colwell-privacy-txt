@@ -73,7 +73,7 @@ The file format adds structured data for three areas:
 
 The file format is UTF8 text and lists `Field:Value`, one per line. Whitespace and lines that start with `#` are ignored.
 
-## 1. A machine parsable and complete privacy policy
+## A machine parsable and complete privacy policy
 
 It is currently difficult to associate a complete privacy policy text with a service for a number of reasons. First, even though it must be linked from the company webpage, there is not a canonical URL. Second, it is common for services to use client-side rendering, interactive elements, break out links for addendums, and server rules to prevent machine parsing/scraping.
 
@@ -95,7 +95,7 @@ A complete privacy policy in a single UTF8 text file that can be downloaded by a
 If Privacy-policy-text is present, this can simply point to the existing privacy policy, in whatever form it currently exists. Otherwise, it must point to a machine parsable/scrapable static HTML file that contains the complete policy on a single page.
 
 
-## 2. Consumer actions under their privacy rights
+## Consumer actions under their privacy rights
 
 This file format proposed fields to structure the consumer actions described in the privacy policy and commonly required by law. Currently it is difficult to get even an email that can service privacy requests from many top-100 site privacy policies. There is currently no law about how easy it should be to take privacy actions, similar to the US CAN-SPAM Act[^4], which led to an industry standard one-click link for marketing emails. The spirit of these fields is similar, to make it as easy as possible for a consumer to exercise their privacy rights.
 
@@ -130,7 +130,7 @@ Email or one-click URL to get a list of all third parties where personal data ha
 Email or one-click URL to opt out of marketing.
 
 
-## 3. Cookie disclosures
+## Cookie disclosures
 
 Common privacy laws call for transparency in cookie storage. In order to audit and enforce transparency, this file format proposes fields that describe the cookies used by a web site, following a previously published format[^5]. A web browser could technically enforce this declaration by refusing access to undeclared cookies.
 
