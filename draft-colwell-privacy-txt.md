@@ -117,11 +117,11 @@ Email or one-click URL to process an account and data deletion request.
 
 Email or one-click URL to process a personal data deletion request.
 
-`Action-opt-out-sharing:mailto: EMAIL|URL`
+`Action-opt-out-sharing: mailto:EMAIL|URL`
 
 Email or one-click URL to opt out of personal data sharing with third parties.
 
-`Action-shared-list:mailto: EMAIL|URL`
+`Action-shared-list: mailto:EMAIL|URL`
 
 Email or one-click URL to get a list of all third parties where personal data has been shared.
 
