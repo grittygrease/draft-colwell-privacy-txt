@@ -22,22 +22,19 @@ venue:
   github: USER/REPO
   latest: https://example.com/LATEST
 
-author:
+authors:
  -
     fullname: Nick Sullivan
     email: nicholas.sullivan+ietf@gmail.com
 
- -
-    fullname: Louise Van der Peet
+    fullname: Louise van der Peet
     organization: TU Delft
     email: L.VanderPeet@tudelft.nl
 
- -
     fullname: Georgios Smaragdakis
     organization: TU Delft
     email: g.smaragdakis@tudelft.nl
 
- -
     fullname: Brien Colwell
     organization: BringYour, Inc.
     email: brien@bringyour.com
@@ -241,42 +238,42 @@ A boolean attribute, using 0 or 1 represents false (0) and true (1), whether a c
 ### Cookies
 Optional, multiple entries
 
-`Cookie: FIELD#1,FIELD#2,...FIELD#7`
+`Cookie: 1_NAME, 2_DOMAIN, 3_DURATION, 4_PARTY, 5_OPTIONAL, 6_HTTPONLY, 7_SECURE`
 
 The field values are given as a complete septuple with each field defined by the sections, taken from[^5]. From these fields, the most important cookie attributes related to privacy and compliance can be derived.
 
 
-#### FIELD#1 Cookie name
+#### 1_NAME Cookie name
 
 `NAME`
 
 The name of the cookie. This identifies which cookie is set. The website uses this together with the value to identify the cookie.
 
-#### FIELD#2 Domain name of the cookie
+#### 2_DOMAIN Domain name of the cookie
 
 `URL`
 
 The domain attribute of a cookie specifies which domain may receive the cookie. If this is the same as the host domain, that means it is a first party cookie.
 
-#### FIELD#3 Duration of the cookie
+#### 3_DURATION Duration of the cookie
 
 'DURATION'
 
 The duration attribute contains the storage limit of the cookie. This is in the form of the amount of seconds the cookies will remain on the user’s device before it is expired and deleted.
 
-#### FIELD#4 First or Third party cookie
+#### 4_PARTY First or Third party cookie
 
 This is a boolean attribute, using 0 or 1 represents false (0) and true (1), that indicates whether the cookie is a third party cookie. Thus means that the target domain is different from the host domain. It is placed on the website by someone other than the owner and collects data for that third party.
 
-#### FIELD#5 Optional status
+#### 5_OPTIONAL Optional status
 
 This is a boolean attribute, using 0 or 1 represents false (0) and true (1), which indicates whether this is an options cookie or not. Optional cookies can be refused by the user, using the consent banner. When cookies are not optional they will always be placed on the user’s device when they access the website, with or without consent.
 
-#### FIELD#6 HTTPonly status
+#### 6_HTTPONLY HTTPonly status
 
 This is a boolean attribute, using 0 or 1 represents false (0) and true (1), which indicates whether the httpOnly flag is set. This means that the cookie can only be transferred via HTTP, and therefor the cookie can only be accessed by the current server. This helps mitigate clientside scripts accessing the cookie data.
 
-#### FIELD#7 Secure status
+#### 7_SECURE Secure status
 
 This is a boolean attribute, using 0 or 1 represents false (0) and true (1), which indicates whether the secure flag is set on the cookie. The secure flag causes the browser to only send the cookie over encrypted channels, therefor securing the communication between the user’s device and the server.
 
