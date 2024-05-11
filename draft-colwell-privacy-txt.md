@@ -26,15 +26,15 @@ authors:
  -
     fullname: Nick Sullivan
     email: nicholas.sullivan+ietf@gmail.com
-
+ -
     fullname: Louise van der Peet
     organization: TU Delft
     email: L.VanderPeet@tudelft.nl
-
+ -
     fullname: Georgios Smaragdakis
     organization: TU Delft
     email: g.smaragdakis@tudelft.nl
-
+ -
     fullname: Brien Colwell
     organization: BringYour, Inc.
     email: brien@bringyour.com
