@@ -18,7 +18,7 @@ venue:
   group: WG
   type: Working Group
   mail: draft-colwell-privacy-txt@ietf.org
-  arch: https://github.com/grittygrease/draft-colwell-privacy-txt/blob/main/draft-colwell-privacy-txt.md
+  arch:
   github: https://github.com/grittygrease/draft-colwell-privacy-txt
   latest: https://www.privacytxt.dev
 
