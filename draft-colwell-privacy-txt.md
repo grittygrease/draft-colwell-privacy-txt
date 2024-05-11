@@ -5,8 +5,8 @@ category: info
 
 docname: draft-colwell-privacy-txt-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
-number: draft-01
-date: 2024-05-21
+number:
+date:
 consensus:
 v: 3
 area:
@@ -17,10 +17,10 @@ keyword:
 venue:
   group: WG
   type: Working Group
-  mail: draft-colwell-privacy-txt@ietf.org
-  arch: https://github.com/grittygrease/draft-colwell-privacy-txt/blob/main/draft-colwell-privacy-txt.md
-  github: https://github.com/grittygrease/draft-colwell-privacy-txt
-  latest: https://www.privacytxt.dev
+  mail: WG@example.com
+  arch: https://example.com/WG
+  github: USER/REPO
+  latest: https://example.com/LATEST
 
 author:
  -
