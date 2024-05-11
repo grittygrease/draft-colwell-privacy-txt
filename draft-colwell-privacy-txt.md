@@ -5,7 +5,7 @@ category: info
 
 docname: draft-colwell-privacy-txt-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
-number: draft-01
+number:
 date: 2024-05-21
 consensus:
 v: 3
