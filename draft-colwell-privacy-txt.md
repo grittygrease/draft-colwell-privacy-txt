@@ -22,7 +22,7 @@ venue:
   github: https://github.com/grittygrease/draft-colwell-privacy-txt
   latest: https://www.privacytxt.dev
 
-authors:
+author:
  -
     fullname: Nick Sullivan
     email: nicholas.sullivan+ietf@gmail.com
