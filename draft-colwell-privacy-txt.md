@@ -6,7 +6,7 @@ category: info
 docname: draft-colwell-privacy-txt-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
 number:
-date:
+date: 2024-05-21
 consensus:
 v: 3
 area:
@@ -17,24 +17,24 @@ keyword:
 venue:
   group: WG
   type: Working Group
-  mail: WG@example.com
-  arch: https://example.com/WG
-  github: USER/REPO
-  latest: https://example.com/LATEST
+  mail: draft-colwell-privacy-txt@ietf.org
+  arch:
+  github: https://github.com/grittygrease/draft-colwell-privacy-txt
+  latest: https://www.privacytxt.dev
 
-authors:
+author:
  -
     fullname: Nick Sullivan
     email: nicholas.sullivan+ietf@gmail.com
-
+ -
     fullname: Louise van der Peet
     organization: TU Delft
     email: L.VanderPeet@tudelft.nl
-
+ -
     fullname: Georgios Smaragdakis
     organization: TU Delft
     email: g.smaragdakis@tudelft.nl
-
+ -
     fullname: Brien Colwell
     organization: BringYour, Inc.
     email: brien@bringyour.com
@@ -266,7 +266,7 @@ The domain attribute of a cookie specifies which domain may receive the cookie. 
 
 `DURATION`
 
-The duration attribute contains the storage limit of the cookie. This is in the form of the amount of seconds the cookies will remain on the user’s device before it is expired and deleted.
+The duration attribute contains the storage limit of the cookie. This is in the form of the amount of seconds the cookies will remain on the user's device before it is expired and deleted.
 
 #### 4_PARTY First or Third party cookie
 
@@ -274,7 +274,7 @@ This is a boolean attribute, using 0 or 1 represents false (0) and true (1), tha
 
 #### 5_OPTIONAL Optional status
 
-This is a boolean attribute, using 0 or 1 represents false (0) and true (1), which indicates whether this is an options cookie or not. Optional cookies can be refused by the user, using the consent banner. When cookies are not optional they will always be placed on the user’s device when they access the website, with or without consent.
+This is a boolean attribute, using 0 or 1 represents false (0) and true (1), which indicates whether this is an options cookie or not. Optional cookies can be refused by the user, using the consent banner. When cookies are not optional they will always be placed on the user's device when they access the website, with or without consent.
 
 #### 6_HTTPONLY HTTPonly status
 
@@ -282,7 +282,7 @@ This is a boolean attribute, using 0 or 1 represents false (0) and true (1), whi
 
 #### 7_SECURE Secure status
 
-This is a boolean attribute, using 0 or 1 represents false (0) and true (1), which indicates whether the secure flag is set on the cookie. The secure flag causes the browser to only send the cookie over encrypted channels, therefor securing the communication between the user’s device and the server.
+This is a boolean attribute, using 0 or 1 represents false (0) and true (1), which indicates whether the secure flag is set on the cookie. The secure flag causes the browser to only send the cookie over encrypted channels, therefor securing the communication between the user's device and the server.
 
 # Other records
 
