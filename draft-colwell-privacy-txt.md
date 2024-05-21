@@ -228,12 +228,19 @@ Email or one-click URL to opt out of marketing.
 
 Common privacy laws call for transparency in cookie storage. In order to audit and enforce transparency, this file format proposes fields that describe the cookies used by a web site, following a previously published format[^5]. A web browser could technically enforce this declaration by refusing access to undeclared cookies.
 
-### Cookie banner
+### Consent banner
 Optional, single entry
 
-`Banner: CONSENT_PRESENT,CONSENT_PLATFORM`
+`Banner: CONSENT_PRESENT`
 
-A boolean attribute, using 0 or 1 represents false (0) and true (1), whether a consent banner is present, and the consent management platform name, which can be set to `non-specific-custom` or any identifying name if it is a custom banner, or set to `none detected` when there is not banner.
+A boolean attribute, using 0 or 1 represents false (0) and true (1), whether a consent banner is present.
+
+### Consent platform name
+Optional, single entry
+
+`Consent-platform: CONSENT_PLATFORM`
+
+The consent management platform name, which can be set to `non-specific-custom` or any identifying name if it is a custom banner, or set to `none detected` when there is not banner.
 
 ### Cookies
 Optional, multiple entries
@@ -257,7 +264,7 @@ The domain attribute of a cookie specifies which domain may receive the cookie. 
 
 #### 3_DURATION Duration of the cookie
 
-'DURATION'
+`DURATION`
 
 The duration attribute contains the storage limit of the cookie. This is in the form of the amount of seconds the cookies will remain on the user’s device before it is expired and deleted.
 
@@ -277,6 +284,9 @@ This is a boolean attribute, using 0 or 1 represents false (0) and true (1), whi
 
 This is a boolean attribute, using 0 or 1 represents false (0) and true (1), which indicates whether the secure flag is set on the cookie. The secure flag causes the browser to only send the cookie over encrypted channels, therefor securing the communication between the user’s device and the server.
 
+# Other records
+
+Other records that are not part of the privacy.txt protocol may be included. For example, a regulation-specific record like `action-fcra-freeze` could be added to comply to FCRA obligations.
 
 # Conventions and Definitions
 
