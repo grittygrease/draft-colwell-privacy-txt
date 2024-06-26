@@ -119,7 +119,7 @@ For web-based services, organizations MUST place the "privacy.txt" file under th
 
 The file MUST be accessed via HTTP 1.0 or a higher version, and the file access MUST use the "https" scheme (as per Section 2.7.2 of {{!RFC7230}}). It MUST have a Content-Type of "text/plain" with the default charset parameter set to "utf-8" (as per Section 4.1.3 of {{!RFC2046}}).
 
-Retrieval of "security.txt" files and resources indicated within such files may result in a redirect (as per Section 6.4 of {{RFC7231}}). Researchers should perform additional analysis (as per Section 5.2) to make sure these redirects are not malicious or pointing to resources controlled by an attacker.
+Retrieval of "privacy.txt" files and resources indicated within such files may result in a redirect (as per Section 6.4 of {{RFC7231}}).
 
 
 ## Valid value formats
