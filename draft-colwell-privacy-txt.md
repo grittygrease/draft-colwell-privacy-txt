@@ -130,11 +130,11 @@ A string of maximum 50 characters. The string can contain any US-ASCII character
 
 ### COUNTRY_CODE
 
-The country code MUST follow 2-letter {{!ISO3166}}.
+The country code MUST follow 2-letter {{ISO3166}}.
 
 ### LANGUAGE_CODE
 
-The language code MUST follow 2-letter {{!ISO639}}.
+The language code MUST follow 2-letter {{ISO639}}.
 
 ### CONSENT_PRESENT
 
