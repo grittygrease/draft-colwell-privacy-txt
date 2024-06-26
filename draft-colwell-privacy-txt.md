@@ -126,7 +126,7 @@ Retrieval of "privacy.txt" files and resources indicated within such files may r
 
 ### NAME
 
-A string of maximum 50 characters. The string can contain any US-ASCII characters except for: control characters (ASCII characters 0 up to 31 and ASCII character 127) or separator characters (space, tab and the characters: ( ) < > @ , ; : \ " / [ ] ? = { }). This field is case sensitive.
+A string of maximum 50 characters. The string can contain any US-ASCII characters except for: control characters (ASCII characters 0 up to 31 and ASCII character 127) or separator characters (space, tab and the characters: `(` `)` `<` `>` `@` `,` `;` `:` `\` `"` `/` `[` `]` `?` `=` `{` `}`). This field is case sensitive.
 
 ### COUNTRY_CODE
 
@@ -135,7 +135,7 @@ The country code MUST follow 2-letter [ISO 3166-1](https://www.iso.org/standard/
 ### LANGUAGE_CODE
 
 The language code MUST follow 2-letter [ISO 639-1](https://www.iso.org/standard/74575.html).
- 
+
 ### CONSENT_PRESENT
 
 A boolean attribute, using 0 or 1 representing false (0) and true (1), whether a consent banner is present.
