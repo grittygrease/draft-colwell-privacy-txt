@@ -15,8 +15,8 @@ keyword:
  - privacy
  - file format
 venue:
-  group: WG
-  type: Working Group
+  group:
+  type:
   mail: draft-colwell-privacy-txt@ietf.org
   arch:
   github: https://github.com/grittygrease/draft-colwell-privacy-txt
@@ -25,6 +25,7 @@ venue:
 author:
  -
     fullname: Nick Sullivan
+    organization: Cryptography Consulting LLC
     email: nicholas.sullivan+ietf@gmail.com
  -
     fullname: Louise van der Peet
@@ -40,13 +41,52 @@ author:
     email: brien@bringyour.com
 
 normative:
+  RFC6068:
+  RFC8415:
+  RFC7231:
+  RFC3629:
+  RFC7230:
+  RFC2046:
+  ISO3166:
+    title: "Codes for the representation of names of countries and their subdivisions - Part 1: Country codes"
+    date: 2020
+    target: https://www.iso.org/standard/72482.html
+    author:
+      - org: International Organization for Standardization (ISO)
+  ISO639:
+    title: "Code for individual languages and language groups"
+    date: 2023
+    target: https://www.iso.org/standard/74575.html
+    author:
+      - org: International Organization for Standardization (ISO)
 
 informative:
-
+  RFC9309:
+  RFC9116:
+  ADS-TXT:
+    title: "Ads.txt 1.1 Specification"
+    author:
+      - org: IAB Tech Lab
+    date: April 2022
+    target: https://iabtechlab.com/wp-content/uploads/2022/04/Ads.txt-1.1.pdf
+  CAN-SPAM:
+    title: "CAN-SPAM Act: A Compliance Guide for Business"
+    author:
+      - org: Federal Communications Commission (FCC)
+    target: https://www.fcc.gov/general/can-spam
+  GUIDE:
+    author:
+      - name: "Louise van der Peet"
+    title: "Increasing privacy-related transparency on the web using a self-disclosing standard"
+    date: 2023
+    target: http://resolver.tudelft.nl/uuid:64b40236-787d-4ae0-8700-60cfe1598bfe
+  MANAGERS:
+    title: "Consent Manager List"
+    target: https://github.com/privacy-txt/privacy-txt-tools/blob/master/data-collector/data/consent_managers.json
 
 --- abstract
 
-This proposal outlines a new file format called privacy.txt. It follows similar placement on a web server as robots.txt[^1], security.txt[^2], or ads.txt[^3], in the / directory or /.well-known directory.
+This proposal outlines a new file format called privacy.txt. It follows similar placement on a web server as robots.txt {{RFC9309}}, security.txt {{RFC9116}}, or ads.txt {{ADS-TXT}}, in the / directory or /.well-known directory.
 
 The file format adds structured data for three areas:
 1. A machine parsable and complete privacy policy
@@ -57,18 +97,18 @@ The file format adds structured data for three areas:
 
 # Introduction
 
-Consumers in many parts of the world have extensive privacy rights under laws such as the GDPR and the CPRA. However, without some formalization of a service's privacy policy, it is difficult or often intractable for consumers to exercise those rights; enforcement to verify compliance with laws and develop effective monitoring; and researchers and technologists to develop tools to allow greater adoption and success of privacy practices.
+Consumers in many parts of the world have extensive privacy rights under laws such as the GDPR (https://gdpr.eu/tag/gdpr/), the CCPA (https://oag.ca.gov/privacy/ccpa). However, without some formalization of a service's privacy policy, it is difficult or often intractable for consumers to exercise those rights; enforcement to verify compliance with laws and develop effective monitoring; and researchers and technologists to develop tools to allow greater adoption and success of privacy practices.
 
 Consumer data originally gets into the cloud by connections from consumer devices to web servers in the cloud. To be able to audit and technically enforce privacy it must be possible to track the privacy policies applied to every byte of consumer data entering the cloud. However, currently the association between a web request and the privacy policy is tenuous, leading to the possibility of incorrect or unverifiable consumer data usage at the very source. This proposal fills that hole by associating structured privacy data with every web server. Just like HTTPS security can be technically enforced, this proposal makes it possible to technically enforce privacy by verifying that the structured privacy information exists and is in good standing before sending data to the server.
 
 This proposal outlines a new file format called privacy.txt. The file format adds structured data for three areas:
-1. A machine parsable and complete privacy policy
+1. A machine-parsable and complete privacy policy
 2. Consumer actions under their privacy rights
 3. Cookie disclosures
 
 ## General file format
 
-The file format is UTF8 text and lists `Field:Value`, one per line. Whitespace and lines that start with `#` are ignored. All field are NOT case sensitive unless mentioned otherwise.
+The file format is UTF-8 text {{!RFC3629}} and lists `Field:Value`, one per line. Whitespace and lines that start with `#` are ignored. All fields are NOT case sensitive unless mentioned otherwise.
 
 The following characters are allowed as line breaks:
 1. Carriage Return and Line Feed (CRLF) `\r\n`
@@ -77,11 +117,16 @@ The following characters are allowed as line breaks:
 
 ## File placement
 
-Privacy.txt follows similar placement on a web server as robots.txt[^1], security.txt[^2], or ads.txt[^3], in the / directory or /.well-known directory [1,2,3].
+For web-based services, organizations MUST place the "privacy.txt" file under the "/.well-known/" path, e.g., https://example.com/.well-known/privacy.txt as per {{!RFC8615}} of a domain name or IP address. For legacy compatibility, a "privacy.txt" file might be placed at the top-level path or redirect (as per Section 6.4 of {{!RFC7231}}) to the "privacy.txt" file under the "/.well-known/" path. If a "privacy.txt" file is present in both locations, the one in the "/.well-known/" path MUST be used.
+
+The file MUST be accessed via HTTP 1.0 or a higher version, and the file access MUST use the "https" scheme (as per Section 2.7.2 of {{!RFC7230}}). It MUST have a Content-Type of "text/plain" with the default charset parameter set to "utf-8" (as per Section 4.1.3 of {{!RFC2046}}).
+
+Retrieval of "security.txt" files and resources indicated within such files may result in a redirect (as per Section 6.4 of {{RFC7231}}). Researchers should perform additional analysis (as per Section 5.2) to make sure these redirects are not malicious or pointing to resources controlled by an attacker.
+
 
 ## Valid value formats
 
-#### URL
+### URL
 
 `[scheme://]host/path`
 
@@ -89,39 +134,39 @@ Privacy.txt follows similar placement on a web server as robots.txt[^1], securit
 2. Host: The domain name (e.g., www.example.com) or IP address of the server.
 3. Path: The specific path to the resource on the server.
 
-#### NAME
+### NAME
 
 A string of maximum 50 characters. The string can contain any US-ASCII characters except for: control characters (ASCII characters 0 up to 31 and ASCII character 127) or separator characters (space, tab and the characters: ( ) < > @ , ; : \ " / [ ] ? = { }). This field is case sensitive.
 
-#### COUNTRY_CODE
+### COUNTRY_CODE
 
-The country code should follow 2-letter ISO 3166-1.
+The country code MUST follow 2-letter ISO 3166-1 {{!ISO3166}}.
 
-#### LANGUAGE_CODE
+### LANGUAGE_CODE
 
-The language code should follow 2-letter ISO 639-1.
+The language code MUST follow 2-letter ISO 639-1 {{!ISO639}}.
 
-#### EMAIL
+### EMAIL
 
 `local-part@domain`
 
 1. Local-Part: The local-part of the email, which is the section before the '@' symbol.
 2. Domain: The domain name (e.g., example.com) of the email server.
 
-The `mailto` should be structured according to RFC6068 [^7].
+The `mailto` MUST be structured according to {{!RFC6068}}.
 
-#### CONSENT_PRESENT
+### CONSENT_PRESENT
 
-A boolean attribute, using 0 or 1 represents false (0) and true (1), whether a consent banner is present.
+A boolean attribute, using 0 or 1 representing false (0) and true (1), whether a consent banner is present.
 
-#### CONSENT_PLATFORM
+### CONSENT_PLATFORM
 
 String attribute can be set to:
-1. Label of consent platforms according to [^6] (extendable)
+1. Label of consent platforms according to {{MANAGERS}} (extendable)
 2. `non-specific custom` or any identifying name if it is a custom banner
 3. `non-detected` when there is no banner
 
-#### DURATION
+### DURATION
 
 An integer attribute of the duration between 0 and the maximum duration. -1 can be used for session cookies.
 
@@ -153,7 +198,7 @@ Optional, single entry
 Multi-language support:
  `Privacy-policy-text-[LANGUAGE_CODE]: URL`
 
-A complete privacy policy in a single UTF8 text file that can be downloaded by any user agent or machine tool. This must include all addendums in the text file. It must not include links. Information about contact and consumer actions are covered in this file format and do not need to be linked to in the policy text.
+A complete privacy policy in a single UTF-8 text file that can be downloaded by any user agent or machine tool. This MUST include all addendums in the text file. It MUST NOT include links. Information about contact and consumer actions are covered in this file format and do not need to be linked to in the policy text.
 
 ### Privacy policy URL
 
@@ -170,7 +215,7 @@ If Privacy-policy-text is present, this can simply point to the existing privacy
 
 ## Consumer actions under their privacy rights
 
-This file format proposed fields to structure the consumer actions described in the privacy policy and commonly required by law. Currently it is difficult to get even an email that can service privacy requests from many top-100 site privacy policies. There is currently no law about how easy it should be to take privacy actions, similar to the US CAN-SPAM Act[^4], which led to an industry standard one-click link for marketing emails. The spirit of these fields is similar, to make it as easy as possible for a consumer to exercise their privacy rights.
+This file format proposed fields to structure the consumer actions described in the privacy policy and commonly required by law. Currently it is difficult to get even an email that can service privacy requests from many top-100 site privacy policies. There is currently no law about how easy it should be to take privacy actions, similar to the US CAN-SPAM Act {{CAN-SPAM}}, which led to an industry standard one-click link for marketing emails. The spirit of these fields is similar, to make it as easy as possible for a consumer to exercise their privacy rights.
 
 In this section, a *one-click URL* refers to a URL that can process a request without requiring a customer password or login. The URL should take customer identification such as email and verify as necessary to complete the request.
 
@@ -226,14 +271,14 @@ Email or one-click URL to opt out of marketing.
 
 ## Cookie disclosures
 
-Common privacy laws call for transparency in cookie storage. In order to audit and enforce transparency, this file format proposes fields that describe the cookies used by a web site, following a previously published format[^5]. A web browser could technically enforce this declaration by refusing access to undeclared cookies.
+Common privacy laws call for transparency in cookie storage. In order to audit and enforce transparency, this file format proposes fields that describe the cookies used by a web site, following a previously published format {{GUIDE}}. A web browser could technically enforce this declaration by refusing access to undeclared cookies.
 
 ### Consent banner
 Optional, single entry
 
 `Banner: CONSENT_PRESENT`
 
-A boolean attribute, using 0 or 1 represents false (0) and true (1), whether a consent banner is present.
+A boolean attribute, using 0 or 1 representing false (0) and true (1), whether a consent banner is present.
 
 ### Consent platform name
 Optional, single entry
@@ -247,7 +292,7 @@ Optional, multiple entries
 
 `Cookie: 1_NAME, 2_DOMAIN, 3_DURATION, 4_PARTY, 5_OPTIONAL, 6_HTTPONLY, 7_SECURE`
 
-The field values are given as a complete septuple with each field defined by the sections, taken from[^5]. From these fields, the most important cookie attributes related to privacy and compliance can be derived.
+The field values are given as a complete septuple with each field defined by the sections, taken from {{GUIDE}}. From these fields, the most important cookie attributes related to privacy and compliance can be derived.
 
 
 #### 1_NAME Cookie name
@@ -270,19 +315,19 @@ The duration attribute contains the storage limit of the cookie. This is in the 
 
 #### 4_PARTY First or Third party cookie
 
-This is a boolean attribute, using 0 or 1 represents false (0) and true (1), that indicates whether the cookie is a third party cookie. Thus means that the target domain is different from the host domain. It is placed on the website by someone other than the owner and collects data for that third party.
+This is a boolean attribute, using 0 or 1 representing false (0) and true (1), that indicates whether the cookie is a third party cookie. Thus means that the target domain is different from the host domain. It is placed on the website by someone other than the owner and collects data for that third party.
 
 #### 5_OPTIONAL Optional status
 
-This is a boolean attribute, using 0 or 1 represents false (0) and true (1), which indicates whether this is an options cookie or not. Optional cookies can be refused by the user, using the consent banner. When cookies are not optional they will always be placed on the user's device when they access the website, with or without consent.
+This is a boolean attribute, using 0 or 1 representing false (0) and true (1), which indicates whether this is an options cookie or not. Optional cookies can be refused by the user, using the consent banner. When cookies are not optional they will always be placed on the user's device when they access the website, with or without consent.
 
 #### 6_HTTPONLY HTTPonly status
 
-This is a boolean attribute, using 0 or 1 represents false (0) and true (1), which indicates whether the httpOnly flag is set. This means that the cookie can only be transferred via HTTP, and therefor the cookie can only be accessed by the current server. This helps mitigate clientside scripts accessing the cookie data.
+This is a boolean attribute, using 0 or 1 representing false (0) and true (1), which indicates whether the httpOnly flag is set. This means that the cookie can only be transferred via HTTP, and therefor the cookie can only be accessed by the current server. This helps mitigate clientside scripts accessing the cookie data.
 
 #### 7_SECURE Secure status
 
-This is a boolean attribute, using 0 or 1 represents false (0) and true (1), which indicates whether the secure flag is set on the cookie. The secure flag causes the browser to only send the cookie over encrypted channels, therefor securing the communication between the user's device and the server.
+This is a boolean attribute, using 0 or 1 representing false (0) and true (1), which indicates whether the secure flag is set on the cookie. The secure flag causes the browser to only send the cookie over encrypted channels, therefor securing the communication between the user's device and the server.
 
 # Other records
 
@@ -307,11 +352,3 @@ This document has no IANA actions.
 
 # Acknowledgments
 {:numbered="false"}
-
-[^1]: https://datatracker.ietf.org/doc/html/rfc9309
-[^2]: https://datatracker.ietf.org/doc/html/rfc9116
-[^3]: https://iabtechlab.com/ads-txt/
-[^4]: https://www.fcc.gov/general/can-spam
-[^5]: privacy.txt Implementation Guide Louise van der Peet November 2022
-[^6]: https://github.com/privacy-txt/privacy-txt-tools/blob/master/data-collector/data/consent_managers.json
-[^7]: https://datatracker.ietf.org/doc/html/rfc6068
