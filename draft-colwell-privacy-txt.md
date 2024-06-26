@@ -47,18 +47,18 @@ normative:
   RFC3629:
   RFC7230:
   RFC2046:
-  # ISO3166:
-  #   title: "Codes for the representation of names of countries and their subdivisions - Part 1: Country codes"
-  #   date: 2020
-  #   target: https://www.iso.org/standard/72482.html
-  #   author:
-  #     - org: International Organization for Standardization (ISO)
-  # ISO639:
-  #   title: "Code for individual languages and language groups"
-  #   date: 2023
-  #   target: https://www.iso.org/standard/74575.html
-  #   author:
-  #     - org: International Organization for Standardization (ISO)
+  ISO3166:
+    title: "Codes for the representation of names of countries and their subdivisions - Part 1: Country codes"
+    date: 2020
+    target: https://www.iso.org/standard/72482.html
+    author:
+      - org: International Organization for Standardization (ISO)
+  ISO639:
+    title: "Code for individual languages and language groups"
+    date: 2023
+    target: https://www.iso.org/standard/74575.html
+    author:
+      - org: International Organization for Standardization (ISO)
 
 informative:
   RFC9309:
@@ -119,7 +119,7 @@ For web-based services, organizations MUST place the "privacy.txt" file under th
 
 The file MUST be accessed via HTTP 1.0 or a higher version, and the file access MUST use the "https" scheme (as per Section 2.7.2 of {{!RFC7230}}). It MUST have a Content-Type of "text/plain" with the default charset parameter set to "utf-8" (as per Section 4.1.3 of {{!RFC2046}}).
 
-Retrieval of "privacy.txt" files and resources indicated within such files may result in a redirect (as per Section 6.4 of {{RFC7231}}).
+Retrieval of "privacy.txt" files and resources indicated within such files may result in a redirect (as per Section 6.4 of {{!RFC7231}}).
 
 
 ## Valid value formats
@@ -130,11 +130,11 @@ A string of maximum 50 characters. The string can contain any US-ASCII character
 
 ### COUNTRY_CODE
 
-The country code MUST follow 2-letter [ISO 3166-1](https://www.iso.org/standard/72482.html).
+The country code MUST follow 2-letter {{!ISO3166}}.
 
 ### LANGUAGE_CODE
 
-The language code MUST follow 2-letter [ISO 639-1](https://www.iso.org/standard/74575.html).
+The language code MUST follow 2-letter {{!ISO639}}.
 
 ### CONSENT_PRESENT
 
