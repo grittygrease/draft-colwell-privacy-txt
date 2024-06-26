@@ -6,7 +6,7 @@ category: info
 docname: draft-colwell-privacy-txt-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
 number:
-date: 2024-05-21
+date: 2024-06-26
 consensus:
 v: 3
 area:
@@ -42,23 +42,23 @@ author:
 
 normative:
   RFC6068:
-  RFC8415:
+  # RFC8415:
   RFC7231:
   RFC3629:
   RFC7230:
   RFC2046:
-  ISO3166:
-    title: "Codes for the representation of names of countries and their subdivisions - Part 1: Country codes"
-    date: 2020
-    target: https://www.iso.org/standard/72482.html
-    author:
-      - org: International Organization for Standardization (ISO)
-  ISO639:
-    title: "Code for individual languages and language groups"
-    date: 2023
-    target: https://www.iso.org/standard/74575.html
-    author:
-      - org: International Organization for Standardization (ISO)
+  # ISO3166:
+  #   title: "Codes for the representation of names of countries and their subdivisions - Part 1: Country codes"
+  #   date: 2020
+  #   target: https://www.iso.org/standard/72482.html
+  #   author:
+  #     - org: International Organization for Standardization (ISO)
+  # ISO639:
+  #   title: "Code for individual languages and language groups"
+  #   date: 2023
+  #   target: https://www.iso.org/standard/74575.html
+  #   author:
+  #     - org: International Organization for Standardization (ISO)
 
 informative:
   RFC9309:
