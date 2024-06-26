@@ -108,12 +108,10 @@ This proposal outlines a new file format called privacy.txt. The file format add
 
 ## General file format
 
-The file format is UTF-8 text {{!RFC3629}} and lists `Field:Value`, one per line. Whitespace and lines that start with `#` are ignored. All fields are NOT case sensitive unless mentioned otherwise.
+The file format is UTF8 text {{!RFC3629}} and lists `Field:Value`, one per line. `\n` is used a line break. Excess whitespace and lines that start with `#` are ignored. All field are NOT case sensitive unless mentioned otherwise. Each field MUST appear on its own line.  Unless otherwise specified by the field definition, multiple values MUST NOT be chained together for a single field. Unless otherwise indicated in a definition of a particular field, a field MAY appear multiple times.
 
-The following characters are allowed as line breaks:
-1. Carriage Return and Line Feed (CRLF) `\r\n`
-2. Line Feed (LF): `\n`
-3. Carriage Return (CR): `\r`
+Implementors should be aware that some of the fields may contain URIs using percent-encoding (as per Section 2.1 of {{!RFC3986}}) and mailto URIs (as per {{!RFC6068}}).
+
 
 ## File placement
 
@@ -126,35 +124,18 @@ Retrieval of "security.txt" files and resources indicated within such files may 
 
 ## Valid value formats
 
-### URL
-
-`[scheme://]host/path`
-
-1. Scheme (optional): The protocol used to access the resource, http or https.
-2. Host: The domain name (e.g., www.example.com) or IP address of the server.
-3. Path: The specific path to the resource on the server.
-
 ### NAME
 
 A string of maximum 50 characters. The string can contain any US-ASCII characters except for: control characters (ASCII characters 0 up to 31 and ASCII character 127) or separator characters (space, tab and the characters: ( ) < > @ , ; : \ " / [ ] ? = { }). This field is case sensitive.
 
 ### COUNTRY_CODE
 
-The country code MUST follow 2-letter ISO 3166-1 {{!ISO3166}}.
+The country code MUST follow 2-letter [ISO 3166-1](https://www.iso.org/standard/72482.html).
 
 ### LANGUAGE_CODE
 
-The language code MUST follow 2-letter ISO 639-1 {{!ISO639}}.
-
-### EMAIL
-
-`local-part@domain`
-
-1. Local-Part: The local-part of the email, which is the section before the '@' symbol.
-2. Domain: The domain name (e.g., example.com) of the email server.
-
-The `mailto` MUST be structured according to {{!RFC6068}}.
-
+The language code MUST follow 2-letter [ISO 639-1](https://www.iso.org/standard/74575.html).
+ 
 ### CONSENT_PRESENT
 
 A boolean attribute, using 0 or 1 representing false (0) and true (1), whether a consent banner is present.
