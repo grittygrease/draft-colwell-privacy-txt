@@ -1,8 +1,3 @@
-# patch line 31 of ghpages.mk
-ifeq (push,$(GITHUB_EVENT_NAME))
-PUSH_GHPAGES ?= false
-endif
-
 LIBDIR := lib
 include $(LIBDIR)/main.mk
 
