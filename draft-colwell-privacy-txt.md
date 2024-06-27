@@ -28,7 +28,7 @@ author:
     organization: Cryptography Consulting LLC
     email: nicholas.sullivan+ietf@gmail.com
  -
-    fullname: Louise van der Peet
+    fullname: Louise Van Der Peet
     organization: TU Delft
     email: L.VanderPeet@tudelft.nl
  -
@@ -76,7 +76,7 @@ informative:
     target: https://www.fcc.gov/general/can-spam
   GUIDE:
     author:
-      - name: "Louise van der Peet"
+      - name: "Louise Van Der Peet"
     title: "Increasing privacy-related transparency on the web using a self-disclosing standard"
     date: 2023
     target: http://resolver.tudelft.nl/uuid:64b40236-787d-4ae0-8700-60cfe1598bfe
