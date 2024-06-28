@@ -163,7 +163,7 @@ Both privacy policy fields can be used for multi-language support, the default e
 
 Mandatory, single entry
 
-`Entity: NAME`
+`Entity: ENTITY_NAME`
 `Entity-country: COUNTRY_CODE`
 
 The legal name of the entity issuing the privacy policy.
@@ -231,14 +231,14 @@ Email or one-click URL to process a personal data deletion request.
 #### Opt out of third-party data sharing
 Optional, single entry
 
-`Action-opt-out-sharing:mailto: EMAIL|URL`
+`Action-opt-out-sharing: mailto:EMAIL|URL`
 
 Email or one-click URL to opt out of personal data sharing with third parties.
 
 #### List of third parties
 Optional, single entry
 
-`Action-shared-list:mailto: EMAIL|URL`
+`Action-shared-list: mailto:EMAIL|URL`
 
 Email or one-click URL to get a list of all third parties where personal data has been shared.
 
