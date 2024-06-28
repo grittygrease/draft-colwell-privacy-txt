@@ -1,5 +1,6 @@
 
-Entity: BringYour\, Inc.,US
+Entity: BringYour, Inc.
+Entity-country: US
 Privacy-policy-text: https://bringyour.com/privacy.txt
 Contact: mailto:privacy@bringyour.com
 
