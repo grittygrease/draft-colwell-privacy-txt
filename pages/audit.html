@@ -1,0 +1,178 @@
+<html>
+<head>
+    <link rel="stylesheet" href="res/css/bootstrap.min.css">
+    <style>
+        body {
+            margin: 0px;
+            font-family: sans-serif;
+            font-size: 12pt;
+        }
+        code {
+            color: rgb(64, 64, 64);
+        }
+    </style>
+    <script>
+        function copyText(el, text) {
+            let revert = function() {
+                setTimeout(function() {
+                    el.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+                  <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1z"/>
+                  <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0z"/>
+                </svg>`
+                }, 1000)
+            }
+            navigator.clipboard.writeText(text).then(function() {
+              el.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+              <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/>
+            </svg>`
+            revert()
+            }, function(err) {
+              el.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle" viewBox="0 0 16 16">
+  <path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.15.15 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.2.2 0 0 1-.054.06.1.1 0 0 1-.066.017H1.146a.1.1 0 0 1-.066-.017.2.2 0 0 1-.054-.06.18.18 0 0 1 .002-.183L7.884 2.073a.15.15 0 0 1 .054-.057m1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767z"/>
+  <path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/>
+</svg>`
+                revert()
+            });
+
+        }
+
+
+        function downloadText(el, filename, text) {
+          var element = document.createElement('a');
+          element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+          element.setAttribute('download', filename);
+
+          element.style.display = 'none';
+          document.body.appendChild(element);
+
+          element.click();
+
+          document.body.removeChild(element);
+        }
+
+
+
+        // get url from query param, validate as a url. use only the host part
+        // if blank, use https://privacytxt.dev
+
+        // func init ui called at end of load
+        // - set placeholder text of input text
+        // - any element with class .the-url gets set with the correct url
+        // 
+
+        // api call for current url
+        // store result
+        // generate current summary and key/values
+        // if suggestions loaded, regen suggestions
+
+        // api call for cookies and raw priacy policy
+        // when have both and curent, regen suggestions
+
+
+    </script>
+</head>
+<body>
+    <div style="padding: 8px;"><a href="index.html">&#x2196; privacy.txt home</a></div>
+
+    <div style="max-width: 800px; margin-left: auto; margin-right: auto;">
+        <div style="margin-top: 24px;">Enter a URL below to audit the current privacy.txt and generate a suggested privacy.txt.</div>
+        
+        <div style="margin-top: 24px;">THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</div>
+
+        <div id="input-url-error" style="margin-top: 24px; display: none; padding: 8px; margin-bottom: 12px; border: dotted 1px rgb(255, 0, 0); background: rgba(255, 0, 0, 0.2);">Invalid URL. Expecting <code>https://host</code></div>
+
+        <div style="margin-top: 24px; padding: 24px;"><form action="audit.html" method="get"><input id="input-url" name="url" type="url" placeholder="https://privacytxt.dev" pattern="https://.*" style="width: 100%; font-size: 18pt; padding: 8px;"></form></div>
+
+        <div style="padding: 8px; margin-bottom: 12px; border: dotted 1px rgb(0, 120, 255); background: rgba(0, 120, 255, 0.2);">We're fixing a few things with the audit tool. It will be online shortly.</div>
+
+        <div style="display: none;">
+            <div style="width: 50%; float: left;">
+                <div style="padding-right: 12px;">
+                    <div style="margin-bottom: 12px;"><div class="spinner-border spinner-border-sm" role="status"></div> <b>Looking up the current <code>https://foo.com</code> privacy.txt</b></div>
+                    <div style="margin-bottom: 12px;"><b>Current <code>https://foo.com</code> privacy.txt</b></div>
+                    <div style="padding: 8px; margin-bottom: 12px; border: dotted 1px rgb(255, 0, 0); background: rgba(255, 0, 0, 0.2);">The tool is having issues. Please try again or <a href="mailto:draft-colwell-privacy-txt@ietf.org">contact the authors</a>.</div>
+                    <div style="padding: 8px; margin-bottom: 12px; border: dotted 1px rgb(255, 0, 0); background: rgba(255, 0, 0, 0.2);">This site does not have a privacy.txt. If you are the site owner, you can get started by reviewing and copying the suggested text on the right to <code>https://foo.com/.well-known/privacy.txt</code></div>
+                    <div style="padding: 8px; margin-bottom: 12px; border: dotted 1px rgb(255, 0, 0); background: rgba(255, 0, 0, 0.2);">This site has a privacy.txt but it is not valid. See errors below. <code>https://foo.com/.well-known/privacy.txt</code></div>
+                    <div style="padding: 8px; margin-bottom: 12px; border: dotted 1px rgb(255, 0, 0); background: rgba(255, 0, 0, 0.2);"><code>Error message</code></div>
+                    <div style="padding: 8px; margin-bottom: 12px; border: dotted 1px rgb(0, 120, 255); background: rgba(0, 120, 255, 0.2);">This site has a valid privacy.txt &#x1f64c;  <code>https://foo.com/.well-known/privacy.txt</code></div>
+                    
+                    <div style="margin-bottom: 12px; padding: 4px;"><div style="display: inline-block; width: 100px; vertical-align: middle;"><code>Privacy-policy:</code></div> <code>https://foo.com/privacy</code></div>
+                    <div style="margin-bottom: 12px; padding: 4px;">
+                        <table><tr><td style="width: 100px; vertical-align: middle; user-select: all;"><code>Privacy-policy-text:</code></td><td style="vertical-align: middle; user-select: all;"><code>https://foo.com/privacy-policy.txt</code></td></tr></table></div>
+                    <div style="margin-bottom: 12px; padding: 4px;"><div style="display: inline-block; width: 100px; vertical-align: middle;"><code>Entity-name:</code></div> <code>Foo</code></div>
+                    <div style="margin-bottom: 12px; padding: 4px;"><div style="display: inline-block; width: 100px; vertical-align: middle;"><code>Entity-country:</code></div> <code>us</code></div>
+                    <div style="margin-bottom: 12px; padding: 4px;"><div style="display: inline-block; width: 100px; vertical-align: middle;"><code>Contact:</code></div> <code>privacy@foo.com</code></div>
+
+                    <div style="margin-bottom: 12px; padding: 4px; background: rgba(0, 0, 0, 0.05);"><div style="display: inline-block; width: 100px; vertical-align: middle;"><code>Action-delete-account-and-data:</code></div> <code>mailto:privacy@foo.com</code></div>
+                    <div style="margin-bottom: 12px; padding: 4px; background: rgba(0, 0, 0, 0.05);"><div style="display: inline-block; width: 100px; vertical-align: middle;"><code>Action-delete-personal-data:</code></div> <code>mailto:privacy@foo.com</code></div>
+                    <div style="margin-bottom: 12px; padding: 4px; background: rgba(0, 0, 0, 0.05);"><div style="display: inline-block; width: 100px; vertical-align: middle;"><code>Action-opt-out-sharing:</code></div> <code>mailto:privacy@foo.com</code></div>
+                    <div style="margin-bottom: 12px; padding: 4px; background: rgba(0, 0, 0, 0.05);"><div style="display: inline-block; width: 100px; vertical-align: middle;"><code>Action-shared-list:</code></div> <code>mailto:privacy@foo.com</code></div>
+                    <div style="margin-bottom: 12px; padding: 4px; background: rgba(0, 0, 0, 0.05);"><div style="display: inline-block; width: 100px; vertical-align: middle;"><code>Action-opt-out-marketing:</code></div> <code>mailto:privacy@foo.com</code></div>
+
+                    <div style="margin-bottom: 12px; padding: 4px;"><div style="display: inline-block; width: 100px; vertical-align: middle;"><code>Banner:</code></div> <code>true,non-specific-custom</code></div>
+                    <div style="margin-bottom: 12px; padding: 4px;"><div style="display: inline-block; width: 100px; vertical-align: middle;"><code>Cookie:</code></div> <code>test,foo.com,300,false,true,false,true</code></div>
+
+                    <div style="margin-top: 24px">Gray rows are actions implied by the spec.</div>
+                </div>
+            </div>
+            <div style="width: 50%; float: right;">
+                <div style="padding-left: 12px;">
+                    <div style="margin-bottom: 12px;"><div class="spinner-border spinner-border-sm" role="status"></div> <b>Analyzing for privacy.txt suggestions</b></div>
+                    <div style="margin-bottom: 12px;"><b>Suggested privacy.txt</b> <div><button class="btn btn-secondary" onclick="copyText(this, 'hi')"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+      <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1z"/>
+      <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0z"/>
+    </svg></button> <button class="btn btn-secondary" onclick="downloadText(this, 'privacy-policy.txt', 'hi')"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-text-fill" viewBox="0 0 16 16">
+      <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M5 4h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1m-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5M5 8h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1m0 2h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1"/>
+    </svg></button></div></div>
+    <div style="padding: 8px; margin-bottom: 12px; border: dotted 1px rgb(255, 0, 0); background: rgba(255, 0, 0, 0.2);">The tool is having issues. Please try again or <a href="mailto:draft-colwell-privacy-txt@ietf.org">contact the authors</a>.</div>
+                    <div style="margin-bottom: 12px; padding: 4px;"><div style="display: inline-block; width: 100px; vertical-align: middle;"><code>Privacy-policy:</code></div> <code>https://foo.com/privacy</code></div>
+                    <div style="margin-bottom: 12px; padding: 4px;"><div style="display: inline-block; width: 100px; vertical-align: middle;"><code style="color: rgb(255, 0, 0);">Privacy-policy-text:</code></div> <button class="btn btn-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+      <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1z"/>
+      <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0z"/>
+    </svg></button> <button class="btn btn-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-text-fill" viewBox="0 0 16 16">
+      <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M5 4h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1m-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5M5 8h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1m0 2h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1"/>
+    </svg></button></div>
+                    <div style="margin-bottom: 12px; padding: 4px;"><div style="display: inline-block; width: 100px; vertical-align: middle;"><code>Entity-name:</code></div> <code>Foo</code></div>
+                    <div style="margin-bottom: 12px; padding: 4px;"><div style="display: inline-block; width: 100px; vertical-align: middle;"><code>Entity-country:</code></div> <code>us</code></div>
+                    <div style="margin-bottom: 12px; padding: 4px;"><div style="display: inline-block; width: 100px; vertical-align: middle;"><code>Contact:</code></div> <code>privacy@foo.com</code></div>
+                    <div style="margin-bottom: 12px; padding: 4px;"><div style="display: inline-block; width: 100px; vertical-align: middle;"><code>Banner:</code></div> <code>true,non-specific-custom</code></div>
+                    
+                    <div style="margin-bottom: 12px; padding: 4px;"><div style="display: inline-block; width: 100px; vertical-align: middle;"><code>Cookie:</code></div> <code>test,foo.com,300,false,true,false,true</code></div>
+                    <div style="margin-bottom: 12px; padding: 4px;"><div style="display: inline-block; width: 100px; vertical-align: middle;"><code style="color: rgb(255, 0, 0);">Cookie:</code></div> <code style="color: rgb(255, 0, 0);">test2,foo.com,300,false,true,false,true</code></div>
+                    <div style="margin-bottom: 12px; padding: 4px;"><div style="display: inline-block; width: 100px; vertical-align: middle;"><code style="color: rgb(255, 0, 0);">Cookie:</code></div> <code style="color: rgb(255, 0, 0);">test3,foo.com,300,false,true,false,true</code></div>
+
+                    <div style="margin-top: 24px">Red items missing in or different than the current privacy.txt</div>
+
+                    <div style="margin-top: 24px">Make sure to <code>301</code> redirect all API, CDN, and ancillary host <code>https://&lt;host&gt;/privacy.txt</code> to <code>https://foo.com/.well-known/privacy.txt</code> . This establishes privacy settings on all connections from the user to your servers. At some point a privacy-aware client may block connections to hosts that do not have a valid <code>https://&lt;host&gt;/privacy.txt</code> or <code>https://&lt;host&gt;/.well-known/privacy.txt</code> .</div>
+                </div>
+            </div>
+            <div style="width: 50%; clear: both;"></div>
+        </div>
+
+    <div style="margin-top: 48px;">Built with this <a href="https://bringyour.com/gpt">API</a></div>
+    </div>
+
+    <script>
+        function isValidUrl(urlStr) {            
+          try {
+            let url = new URL(urlStr)
+            console.log(url)
+            return url.protocol == "https:"
+          } catch (_) {
+            return false
+          }
+        }
+
+        let params = new URLSearchParams(window.location.search)
+        let auditUrl = params.get("url")
+        if (auditUrl) {
+            if (isValidUrl(auditUrl)) {
+                document.getElementById("input-url").placeholder = auditUrl
+            } else {
+                document.getElementById("input-url-error").style.display = "block"
+            }
+        }
+    </script>
+
+</body>
+</html>

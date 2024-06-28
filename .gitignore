@@ -21,4 +21,5 @@ draft-colwell-privacy-txt.xml
 package-lock.json
 report.xml
 !requirements.txt
+!pages/**
 **/.DS_Store
